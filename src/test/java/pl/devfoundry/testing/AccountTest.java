@@ -2,6 +2,9 @@ package pl.devfoundry.testing;
 
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+//import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
@@ -12,6 +15,9 @@ class AccountTest {
         Account newAccount = new Account();
         //then - umieszczamy asercje
         assertFalse(newAccount.isActive(), "Check if new account is active");
+        assertThat(newAccount.isActive(),equalTo(false));
+        //assertThat(newAccount.isActive().is(false));
+
     }
 
     @Test
@@ -22,6 +28,7 @@ class AccountTest {
         newAccount.activate();
         //then
         assertTrue(newAccount.isActive());
+        assertThat(newAccount.isActive(),equalTo(true));
     }
 
     @Test
@@ -34,6 +41,7 @@ class AccountTest {
 
         //then
         assertNull(address);
+        assertThat(address,nullValue());
     }
 
     @Test
@@ -48,5 +56,7 @@ class AccountTest {
 
         //then
         assertNotNull(defaultAddress);
+        assertThat(defaultAddress,is(notNullValue()));
+
     }
 }
