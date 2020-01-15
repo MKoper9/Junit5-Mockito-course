@@ -2,7 +2,8 @@ package pl.devfoundry.testing;
 
 public class Account {
 
-    public boolean active;
+    private boolean active;
+    private Address deafaultDeliveryAddress;
 
     public Account() {
         this.active = false;
@@ -15,4 +16,15 @@ public class Account {
         return this.active;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Address getDeafaultDeliveryAddress() {
+        return deafaultDeliveryAddress;
+    }
+
+    public void setDeafaultDeliveryAddress(Address deafaultDeliveryAddress) {
+        this.deafaultDeliveryAddress = deafaultDeliveryAddress;
+    }
 }

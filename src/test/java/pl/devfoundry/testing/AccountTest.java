@@ -2,8 +2,7 @@ package pl.devfoundry.testing;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
 
@@ -23,5 +22,31 @@ class AccountTest {
         newAccount.activate();
         //then
         assertTrue(newAccount.isActive());
+    }
+
+    @Test
+    void nowlyCreatedAccountShouldNotHaveDefaultDeliveryAddressSet(){
+        //given
+        Account account = new Account();
+
+        //when
+        Address address = account.getDeafaultDeliveryAddress();
+
+        //then
+        assertNull(address);
+    }
+
+    @Test
+    void defaultDeliveryAddressShouldNotBeNullAfterBeingSet(){
+        //given
+        Address address = new Address("Krakowska", "132");
+        Account account = new Account();
+        account.setDeafaultDeliveryAddress(address);
+
+        //when
+        Address defaultAddress = account.getDeafaultDeliveryAddress();
+
+        //then
+        assertNotNull(defaultAddress);
     }
 }
