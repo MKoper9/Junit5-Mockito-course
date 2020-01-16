@@ -6,6 +6,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 //import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class AccountTest {
 
@@ -16,7 +17,6 @@ class AccountTest {
         //then - umieszczamy asercje
         assertFalse(newAccount.isActive(), "Check if new account is active");
         assertThat(newAccount.isActive(),equalTo(false));
-        //assertThat(newAccount.isActive().is(false));
 
     }
 
