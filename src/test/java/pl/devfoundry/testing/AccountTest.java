@@ -5,14 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-//import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
+
+//import static org.hamcrest.Matchers.is;
+
 
 class AccountTest {
 
-    @Test
+     @Test
     void newAccoundShoulddoNotActiveAfterCreation(){
         //given - wstepne zalozenia testu
         Account newAccount = new Account();
