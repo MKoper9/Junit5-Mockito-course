@@ -11,11 +11,17 @@ public class Order {
         this.meals.add(meal);
     }
 
-    public void removeMealFromOrder(Meal meal){
+    public void removeMealFromOrder(Meal meal) {
         this.meals.remove(meal);
     }
 
     public List<Meal> getMeals() {
         return meals;
     }
+
+    void cancel() {
+        this.meals.clear();
+    }
 }
+
+
