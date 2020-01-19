@@ -72,6 +72,7 @@ class AccountTest {
         Account account = new Account(address);
 
         //then
+        //(warunek który musi być spełniony aby wykonałą się metoda testowa, metoda testowa)
         assumingThat(address!=null,() -> {
             assertTrue(account.isActive());
         });
