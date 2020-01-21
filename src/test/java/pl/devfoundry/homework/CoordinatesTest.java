@@ -1,56 +1,66 @@
 package pl.devfoundry.homework;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.Executable;
-import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.api.Test;
 
-import javax.lang.model.type.ExecutableType;
-import java.util.ArrayList;
-import java.util.Collection;
-
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinatesTest {
 
 
+    @Test
+    void throwIllegalArgumentWhenXMoreThan100() {
+
+        //given, when, then
+        assertThrows(IllegalArgumentException.class, () -> new Coordinates(101, 0));
+    }
 
     @Test
-    void ReturnIllegalArgumentExceptionIfValuesAreLessThan0()
-    {
+    void throwIllegalArgumentWhenYMoreThan100() {
+
+        //given, when, then
+        assertThrows(IllegalArgumentException.class, () -> new Coordinates(0, 101));
+    }
+
+    @Test
+    void throwIllegalArgumentWhenXLessThan0() {
+
+        //given, when, then
+        assertThrows(IllegalArgumentException.class, () -> new Coordinates(-1, 0));
+    }
+
+    @Test
+    void throwIllegalArgumentWhenYLessThan0() {
+
+        //given, when, then
+        assertThrows(IllegalArgumentException.class, () -> new Coordinates(0, -1));
+    }
+
+    @Test
+    void copyShouldReturnObject() {
+
         //given
-        Coordinates coordinates = new Coordinates(-10,10);
+        Coordinates coordinates = new Coordinates(0,0);
         //when
+        Coordinates copy=Coordinates.copy(coordinates,0,0);
         //then
-        Exception exception=assertThrows(IllegalArgumentException.class,()->{coordinates.getX(); coordinates.getY();});
+        assertThat(copy, not(sameInstance(coordinates)));
+        assertThat(copy, equalTo(coordinates));
 
-
-        String exceptedMessege = "Position can not be less than 0";
-        assertTrue(exception.getMessage().contains(exceptedMessege));
     }
 
     @Test
-    void sumOfMethodCopyCanBeEquals20()
-    {
+    void IsCopyMethodShouldReturnAllCoordinates(){
         //given
-        Coordinates coordinates = new Coordinates(10,10);
-
-        Coordinates coordinates1=Coordinates.copy(coordinates, 10, 10);
+        Coordinates coordinates = new Coordinates(0,0);
         //when
-        assertEquals(coordinates.getX()+10,coordinates1.getX());
-        assertEquals(coordinates.getY()+10,coordinates1.getY());
+        Coordinates copy = Coordinates.copy(coordinates,10,12);
+        //then
+        assertThat(copy.getX(), is(10));
+        assertThat(copy.getY(), is(12));
     }
-    @Test
-    void sumOfMethodCopyCannotBeEquals20()
-    {
-        //given
-        Coordinates coordinates = new Coordinates(8,8);
 
-        Coordinates coordinates1=Coordinates.copy(coordinates, 10, 10);
-        //when
-        assertNotEquals(coordinates.getX(),coordinates1.getX());
-        assertNotEquals(coordinates.getY(),coordinates1.getY());
-    }
 
 
 
