@@ -24,11 +24,6 @@ public class Unit {
         this.cargo = new ArrayList<>();
 
     }
-
-    public Unit(int maxFuel) {
-        this.maxFuel = maxFuel;
-    }
-
     Coordinates move(int x, int y) {
 
         if (this.fuel - (x + y) < 0) {
