@@ -113,4 +113,40 @@ class OrderTest {
         assertThat(meals1,is(meals2));
     }
 
+    @Test
+    void orderTotalPriceShouldNotExceedsMaxIntValue(){
+        //given
+        Meal meal1 = new Meal(Integer.MAX_VALUE,"Burger");
+        Meal meal2 = new Meal(Integer.MAX_VALUE,"Sandwich");
+        //when
+        order.addMealToOrder(meal1);
+        order.addMealToOrder(meal2);
+
+        //then
+        assertThrows(IllegalStateException.class,() -> order.totalPrice());
+    }
+    @Test
+    void emptyOrderTotalPriceShouldEqualZero(){
+        //given
+        //Order is created in BeforeEach
+
+        //then
+        assertThat(order.totalPrice(),is(0));
+    }
+    @Test
+    void cancelingOrderShouldRemovwAllItemsFromMealList(){
+
+        //given
+        Meal meal1 = new Meal(Integer.MAX_VALUE,"Burger");
+        Meal meal2 = new Meal(Integer.MAX_VALUE,"Sandwich");
+
+        //when
+        order.addMealToOrder(meal1);
+        order.addMealToOrder(meal2);
+        order.cancel();
+
+        //than
+        assertThat(order.getMeals().size(),is(0));
+    }
+
 }
