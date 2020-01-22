@@ -19,6 +19,9 @@ public class Account {
         }
     }
 
+    public String getEmail() {
+        return email;
+    }
 
     public void activate() {
         this.active = true;
