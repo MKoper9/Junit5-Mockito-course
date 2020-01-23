@@ -1,18 +1,20 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.testing.order;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import pl.devfoundry.testing.Meal;
 import pl.devfoundry.testing.extensions.BeforeAfterExtension;
-import pl.devfoundry.testing.order.Order;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(BeforeAfterExtension.class)
 class OrderTest {
@@ -49,7 +51,7 @@ class OrderTest {
         assertThat(order.getMeals(), empty());
         assertThat(order.getMeals().size(), equalTo(0));
         assertThat(order.getMeals(),hasSize(0));
-        assertThat(order.getMeals(),emptyCollectionOf(Meal.class));
+        MatcherAssert.assertThat(order.getMeals(),emptyCollectionOf(Meal.class));
     }
 
     @Test
