@@ -7,11 +7,15 @@ import java.util.List;
 
 public class Order {
 
+    private OrderStatus orderStatus;
     private List<Meal> meals = new ArrayList<>();
 
+
+    public void changeOrderStatus(OrderStatus orderStatus){
+        this.orderStatus=orderStatus;
+    }
+
     int totalPrice(){
-
-
         int sum= this.meals.stream().mapToInt(meal->meal.getPrice()).sum();
         if(sum<0)
         {
@@ -21,6 +25,9 @@ public class Order {
         }
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
     public void addMealToOrder(Meal meal) {
         this.meals.add(meal);
     }
