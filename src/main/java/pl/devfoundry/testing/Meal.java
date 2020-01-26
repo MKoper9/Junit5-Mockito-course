@@ -12,6 +12,9 @@ public class Meal {
         this.name = name;
     }
 
+    public Meal() {
+    }
+
     Meal(int price) {
         this.price = price;
     }
