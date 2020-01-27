@@ -45,7 +45,7 @@ public class AccountServiceTest {
         List<Account> accountList = accountService.getAllActiveAccount();
 
         //then
-        assertThat(accountList, hasSize(2));
+        assertThat(accountList, hasSize(0));
     }
 
     @Test

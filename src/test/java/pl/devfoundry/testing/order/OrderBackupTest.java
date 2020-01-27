@@ -4,9 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pl.devfoundry.testing.Meal;
-import pl.devfoundry.testing.order.Order;
-import pl.devfoundry.testing.order.OrderBackup;
+import pl.devfoundry.meal.Meal;
 
 import java.io.IOException;
 

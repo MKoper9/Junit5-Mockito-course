@@ -1,4 +1,4 @@
-package pl.devfoundry.testing;
+package pl.devfoundry.meal;
 
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Tag;
@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import pl.devfoundry.meal.Meal;
 import pl.devfoundry.testing.extensions.IAExceptionIgnoreExtension;
 import pl.devfoundry.testing.order.Order;
 

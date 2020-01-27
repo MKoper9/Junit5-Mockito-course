@@ -5,7 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pl.devfoundry.testing.Meal;
+import pl.devfoundry.meal.Meal;
 import pl.devfoundry.testing.extensions.BeforeAfterExtension;
 
 import java.util.Arrays;
