@@ -50,16 +50,33 @@ public class MealRepositoryTest {
     }
 
     @Test
-    void shouldBeAbleToFindMealByName() {
+    void shouldBeAbleToFindMealByExactName() {
         //given
         Meal meal = new Meal(10, "Kebap");
+        Meal meal2 = new Meal(10, "Kanapka");
         mealRepository.add(meal);
+        mealRepository.add(meal2);
 
         //when
-        List<Meal> result = mealRepository.findByName("Kebap");
+        List<Meal> result = mealRepository.findByName("Kebap", true);
 
         //then
         assertThat(result.size(),is(1));
+    }
+
+    @Test
+    void shouldBeAbleToFindMealByStartingLetters(){
+        //given
+        Meal meal = new Meal(10, "Kebap");
+        Meal meal2 = new Meal(10, "Kanapka");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+
+        //when
+        List<Meal> result = mealRepository.findByName("K", false);
+
+        //then
+        assertThat(result.size(),is(2));
     }
 
     @Test
