@@ -21,6 +21,7 @@ public class Coordinates {
         this.y = y;
     }
 
+
     static Coordinates copy(Coordinates coordinates, int x, int y) {
         return new Coordinates(coordinates.x + x, coordinates.y + y);
     }
@@ -46,4 +47,6 @@ public class Coordinates {
     int getY() {
         return y;
     }
+
+
 }
