@@ -2,8 +2,6 @@ package pl.devfoundry.meal;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.devfoundry.meal.Meal;
-import pl.devfoundry.meal.MealRepository;
 
 import java.util.List;
 
@@ -61,11 +59,11 @@ public class MealRepositoryTest {
         List<Meal> result = mealRepository.findByName("Kebap", true);
 
         //then
-        assertThat(result.size(),is(1));
+        assertThat(result.size(), is(1));
     }
 
     @Test
-    void shouldBeAbleToFindMealByStartingLetters(){
+    void shouldBeAbleToFindMealByStartingLetters() {
         //given
         Meal meal = new Meal(10, "Kebap");
         Meal meal2 = new Meal(10, "Kanapka");
@@ -76,7 +74,7 @@ public class MealRepositoryTest {
         List<Meal> result = mealRepository.findByName("K", false);
 
         //then
-        assertThat(result.size(),is(2));
+        assertThat(result.size(), is(2));
     }
 
     @Test
@@ -89,6 +87,77 @@ public class MealRepositoryTest {
         List<Meal> result = mealRepository.findByPrice(10);
 
         //then
-        assertThat(result.size(),is(1));
+        assertThat(result.size(), is(3));
+    }
+
+    @Test
+    void shouldBeAbleToFindByPriceWithSortingWithAscending() {
+        //given
+        Meal meal = new Meal(10, "Kebap");
+        Meal meal2 = new Meal(1, "Lizak");
+        Meal meal3 = new Meal(20, "Pizza");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+        mealRepository.add(meal3);
+
+        //when
+        List<Meal> result = mealRepository.findByPriceWithSorting(7, PriceSortType.ASCENDING);
+
+        //then
+        assertThat(result.size(), is(2));
+        System.out.println(result);
+    }
+
+    @Test
+    void shouldBeAbleToFindByPriceWithSortingWithDescending() {
+        //given
+        Meal meal = new Meal(10, "Kebap");
+        Meal meal2 = new Meal(1, "Lizak");
+        Meal meal3 = new Meal(20, "Pizza");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+        mealRepository.add(meal3);
+
+        //when
+        List<Meal> result = mealRepository.findByPriceWithSorting(11, PriceSortType.DESCENDING);
+
+        //then
+        assertThat(result.size(), is(2));
+        System.out.println(result);
+    }
+
+    @Test
+    void shouldBeAbleToFindByPriceWithSortingWithEquals() {
+        //given
+        Meal meal = new Meal(10, "Kebap");
+        Meal meal2 = new Meal(3, "Piwo");
+        Meal meal3 = new Meal(20, "Pizza");
+        Meal meal4 = new Meal(1, "Pianka");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+        mealRepository.add(meal3);
+        mealRepository.add(meal4);
+
+        //when
+        List<Meal> result = mealRepository.find("Pizza", 2, PriceSortType.ASCENDING,true);
+
+        //then
+        assertThat(result.size(), is(1));
+        System.out.println(result);
+    }
+
+    @Test
+    void shouldBeAbleToFindByPriceWithSortingEqualsAndName() {
+        Meal meal = new Meal(10, "Kebap");
+        Meal meal2 = new Meal(1, "Lizak");
+        Meal meal3 = new Meal(20, "Pizza");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+        mealRepository.add(meal3);
+
+        //when
+        List<Meal> result = mealRepository.findByPriceWithSorting(20, PriceSortType.EQUALS);
+
     }
 }
+
