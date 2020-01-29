@@ -88,4 +88,8 @@ public class Unit {
     public Coordinates getCoordinates() {
         return coordinates;
     }
+
+    List<Cargo> getCargo() {
+        return this.cargo;
+    }
 }
