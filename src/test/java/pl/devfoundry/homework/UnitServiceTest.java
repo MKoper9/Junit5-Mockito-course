@@ -9,8 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
@@ -53,6 +52,30 @@ class UnitServiceTest {
         //when
         //then
         assertThrows(NoSuchElementException.class, ()->unitService.addCargoByName(unit, "masło"));
+    }
+    @Test
+    void shouldMethodGetUnitOnThrowException(){
+        //given
+        Coordinates coordinates = new Coordinates(0,0);
+        given(unitRepository.getUnitByCoordinates(coordinates)).willReturn(null);
+        //when
+        //then
+        assertThrows(NoSuchElementException.class,() -> unitService.getUnitOn(coordinates));
+
+    }
+
+    @Test
+    void shouldMethodGetUnitReturnNewUnit(){
+        //given
+
+        Coordinates coordinates = new Coordinates(0,0);
+        Unit unit = new Unit(coordinates,10,10);
+        given(unitRepository.getUnitByCoordinates(coordinates)).willReturn(unit);
+        //when
+        Unit unitResult=unitService.getUnitOn(coordinates);
+        //then
+        verify(unitRepository).getUnitByCoordinates(coordinates);
+        assertThat(unitResult,sameInstance(unit));
     }
 
 
